@@ -1,4 +1,5 @@
 import { defineNuxtPlugin, useRuntimeConfig } from '#app'
+import { consola } from 'consola'
 import { reactive } from 'vue'
 
 interface LogTypes {
@@ -71,14 +72,14 @@ export default defineNuxtPlugin(() => {
 })
 
 function output(logLevel: any, methodName: string, args: any[]) {
-  console.log(
+  consola[logLevel](
     '%c' + logTypes[logLevel as keyof LogTypes].name + '%c' + methodName + '()',
     'background: ' + logTypes[logLevel as keyof LogTypes].color + ';padding: 2px 8px; border-radius: 6px 0 0 6px; color: #fff',
     'background: #D3D3D3; color:#000000; padding: 2px 8px; border-radius: 0 6px 6px 0;'
   )
 
   args.forEach((arg) => {
-    console.log('%c>>', 'color: ' + logTypes[logLevel as keyof LogTypes].color + '; margin-left:5px;', arg)
+    consola[logLevel]('%c>>', 'color: ' + logTypes[logLevel as keyof LogTypes].color + '; margin-left:5px;', arg)
   })
 }
 

@@ -1,6 +1,6 @@
 import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
 import { defu } from 'defu'
-
+import { consola } from 'consola'
 // Module options TypeScript interface definition
 export interface ModuleOptions {
     /**
@@ -31,7 +31,7 @@ export default defineNuxtModule<ModuleOptions>({
         logLevel: 'debug',
     },
     setup(options, nuxt) {
-        console.log('[log4nuxt] Thank you for using log4nuxt!')
+        consola.info('[log4nuxt] Thank you for using log4nuxt!')
 
         nuxt.options.runtimeConfig.public.log4nuxt = defu(nuxt.options.runtimeConfig.public.log4nuxt, {
             isEnabled: options.isEnabled,
@@ -39,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
         })
 
         if (!options.isEnabled) {
-            console.warn("[log4nuxt] Module is disabled (`isEnabled` = `false`) so no logs will be displayed.")
+            consola.warn("[log4nuxt] Module is disabled (`isEnabled` = `false`) so no logs will be displayed.")
         }
         const resolver = createResolver(import.meta.url)
 
