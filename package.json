@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-log4nuxt",
+  "name": "nuxt3-logger",
   "version": "1.0.3",
   "description": "A Nuxt3 Logging Plugin",
   "author": "SharpNub",
